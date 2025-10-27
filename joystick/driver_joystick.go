@@ -8,7 +8,7 @@ type Joystick struct {
 	swPin machine.Pin
 }
 
-// Crear nuevo joystick
+
 func NewJoystick(x machine.Pin, y machine.Pin, sw machine.Pin) *Joystick {
 	j := &Joystick{
 		xPin:  machine.ADC{Pin: x},
@@ -21,7 +21,7 @@ func NewJoystick(x machine.Pin, y machine.Pin, sw machine.Pin) *Joystick {
 	return j
 }
 
-// Normalizado de -1 a +1
+
 func (j *Joystick) ReadAxisX() float32 {
 	raw := j.xPin.Get()
 	x := (float32(raw)/65535.0 - 0.5) * 2
@@ -34,7 +34,7 @@ func (j *Joystick) ReadAxisY() float32 {
 	return y
 }
 
-// True si el botón está presionado
+
 func (j *Joystick) ButtonPressed() bool {
-	return !j.swPin.Get() // Pull-up: LOW = presionado
+	return !j.swPin.Get() 
 }
